@@ -37,7 +37,7 @@ _CITATION = """
 
 
 def _squad_metric(predictions, references):
-    squad_metric = datasets.load_metric("squad_v2")
+    squad_metric = datasets.load_metric("squad_v2", trust_remote_code=True)
     return squad_metric.compute(predictions=predictions, references=references)
 
 
