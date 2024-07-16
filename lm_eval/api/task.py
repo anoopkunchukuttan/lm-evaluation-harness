@@ -819,6 +819,8 @@ class ConfigurableTask(Task):
                     )
                     self._higher_is_better[metric_name] = is_higher_better(metric_name)
 
+        self.config['dataset_kwargs']={}
+        self.config.dataset_kwargs['trust_remote_code']=True
         self.download(self.config.dataset_kwargs)
         self._training_docs = None
         self._fewshot_docs = None
