@@ -6,7 +6,8 @@ output_type: loglikelihood_rolling
 # validation_split: validation
 test_split: test
 doc_to_text: "{{hin_Deva}}"
-process_results: !function preprocess_in22.process_results
+doc_to_target: "{{hin_Deva}}"
+process_results: !function preprocess_in22.process_results_hin_Deva
 # should_decontaminate: true
 # doc_to_decontamination_query: "{{page}}"
 metric_list:
