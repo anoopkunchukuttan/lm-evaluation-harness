@@ -1,0 +1,10 @@
+group: in22lm_gen
+task:
+- in22lm_gen-hin_Deva 
+
+aggregate_metric_list:
+  - metric: word_perplexity
+  - metric: byte_perplexity
+  - metric: bits_per_byte
+metadata:
+  version: 1.0
