@@ -19,3 +19,4 @@ def create_process_results(language_code):
 
 # Create specific functions
 process_results_hin_Deva = create_process_results("hin_Deva")
+process_results_eng_Latn = create_process_results("eng_Latn")

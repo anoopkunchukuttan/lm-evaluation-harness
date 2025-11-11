@@ -1,6 +1,7 @@
 group: in22lm_gen
 task:
-- in22lm_gen-hin_Deva 
+- in22lm_gen-hin_Deva
+- in22lm_gen-eng_Latn
 
 aggregate_metric_list:
   - metric: word_perplexity

@@ -1,0 +1,20 @@
+task: in22lm_gen-eng_Latn
+dataset_path: ai4bharat/IN22-Gen
+# dataset_name: wikitext-2-raw-v1
+output_type: loglikelihood_rolling
+# training_split: train
+# validation_split: validation
+test_split: test
+doc_to_text: "{{eng_Latn}}"
+doc_to_target: "{{eng_Latn}}"
+process_results: !function preprocess_in22.process_results_eng_Latn
+# should_decontaminate: true
+# doc_to_decontamination_query: "{{page}}"
+metric_list:
+  - metric: word_perplexity
+  - metric: byte_perplexity
+  - metric: bits_per_byte
+metadata:
+  version: 1.0
+dataset_kwargs:
+  trust_remote_code: true
