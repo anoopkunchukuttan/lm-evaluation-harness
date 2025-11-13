@@ -1,6 +1,6 @@
 dataset_path: ai4bharat/IN22-Gen
-doc_to_text: 'Translate from English to Hindi: {{eng_Latn}}'
-doc_to_target: ' {{hin_Deva}}'  
+doc_to_text: 'Translate from English to Hindi (generate only the translation): {{eng_Latn}}'
+doc_to_target: '{{hin_Deva}}'  
 include: _in22_translation_common_yaml
 task: in22_translation_gen__eng_Latn-hin_Deva
 metadata:
