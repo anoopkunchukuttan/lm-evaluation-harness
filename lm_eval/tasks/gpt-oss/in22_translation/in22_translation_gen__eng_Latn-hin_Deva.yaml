@@ -3,8 +3,9 @@ doc_to_text: 'English sentence: {{eng_Latn}}
 
   Hindi sentence:'
 doc_to_target: ' {{hin_Deva}}'  
-tag:
-- translation
-- in22_translation_gen
 include: _in22_translation_common_yaml
 task: in22_translation_gen__eng_Latn-hin_Deva
+metadata:
+  version: 1.0
+  slang: eng_Latn
+  tlang: hin_Deva

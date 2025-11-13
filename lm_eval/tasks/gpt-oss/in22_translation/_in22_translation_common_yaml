@@ -10,5 +10,10 @@ generation_kwargs:
   do_sample: false
   temperature: 0.0
 repeats: 1
+tag:
+- translation
+- in22_translation_gen
 metadata:
   version: 1.0
+  slang: eng_Latn
+  tlang: hin_Deva
