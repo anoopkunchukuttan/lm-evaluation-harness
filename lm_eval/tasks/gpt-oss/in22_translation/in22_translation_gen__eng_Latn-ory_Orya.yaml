@@ -1,0 +1,9 @@
+dataset_path: ai4bharat/IN22-Gen
+doc_to_text: 'Translate from English to Odia (generate only the translation): {{eng_Latn}}'
+doc_to_target: '{{ory_Orya}}'  
+include: _in22_translation_common_yaml
+task: in22_translation_gen__eng_Latn-ory_Orya
+metadata:
+  version: 1.0
+  slang: eng_Latn
+  tlang: ory_Orya

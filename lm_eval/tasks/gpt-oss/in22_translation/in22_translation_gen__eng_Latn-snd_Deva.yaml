@@ -1,0 +1,9 @@
+dataset_path: ai4bharat/IN22-Gen
+doc_to_text: 'Translate from English to Sindhi (generate only the translation): {{eng_Latn}}'
+doc_to_target: '{{snd_Deva}}'  
+include: _in22_translation_common_yaml
+task: in22_translation_gen__eng_Latn-snd_Deva
+metadata:
+  version: 1.0
+  slang: eng_Latn
+  tlang: snd_Deva

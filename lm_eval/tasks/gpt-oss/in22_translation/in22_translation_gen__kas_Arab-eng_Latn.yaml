@@ -1,0 +1,9 @@
+dataset_path: ai4bharat/IN22-Gen
+doc_to_text: 'Translate from Kashmiri to English (generate only the translation): {{kas_Arab}}'
+doc_to_target: '{{eng_Latn}}'  
+include: _in22_translation_common_yaml
+task: in22_translation_gen__kas_Arab-eng_Latn
+metadata:
+  version: 1.0
+  slang: kas_Arab
+  tlang: eng_Latn

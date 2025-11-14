@@ -1,0 +1,9 @@
+dataset_path: ai4bharat/IN22-Gen
+doc_to_text: 'Translate from English to Malayalam (generate only the translation): {{eng_Latn}}'
+doc_to_target: '{{mal_Mlym}}'  
+include: _in22_translation_common_yaml
+task: in22_translation_gen__eng_Latn-mal_Mlym
+metadata:
+  version: 1.0
+  slang: eng_Latn
+  tlang: mal_Mlym

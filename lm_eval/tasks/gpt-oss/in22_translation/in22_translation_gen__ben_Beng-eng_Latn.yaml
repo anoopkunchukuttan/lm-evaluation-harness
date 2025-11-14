@@ -1,0 +1,9 @@
+dataset_path: ai4bharat/IN22-Gen
+doc_to_text: 'Translate from Bengali to English (generate only the translation): {{ben_Beng}}'
+doc_to_target: '{{eng_Latn}}'  
+include: _in22_translation_common_yaml
+task: in22_translation_gen__ben_Beng-eng_Latn
+metadata:
+  version: 1.0
+  slang: ben_Beng
+  tlang: eng_Latn

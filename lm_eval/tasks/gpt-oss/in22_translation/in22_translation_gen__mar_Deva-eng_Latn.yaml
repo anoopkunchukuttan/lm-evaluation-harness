@@ -1,0 +1,9 @@
+dataset_path: ai4bharat/IN22-Gen
+doc_to_text: 'Translate from Marathi to English (generate only the translation): {{mar_Deva}}'
+doc_to_target: '{{eng_Latn}}'  
+include: _in22_translation_common_yaml
+task: in22_translation_gen__mar_Deva-eng_Latn
+metadata:
+  version: 1.0
+  slang: mar_Deva
+  tlang: eng_Latn

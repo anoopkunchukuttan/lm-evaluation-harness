@@ -1,0 +1,9 @@
+dataset_path: ai4bharat/IN22-Gen
+doc_to_text: 'Translate from English to Punjabi (generate only the translation): {{eng_Latn}}'
+doc_to_target: '{{pan_Guru}}'  
+include: _in22_translation_common_yaml
+task: in22_translation_gen__eng_Latn-pan_Guru
+metadata:
+  version: 1.0
+  slang: eng_Latn
+  tlang: pan_Guru
