@@ -1,0 +1,6 @@
+group: in22_translation_gen
+task:
+  - in22_translation_gen__eng_Latn-hin_Deva
+  - in22_translation_gen__hin_Deva-eng_Latn
+metadata:
+  version: 1.0
