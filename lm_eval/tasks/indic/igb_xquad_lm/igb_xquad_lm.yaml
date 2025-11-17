@@ -1,0 +1,6 @@
+group: igb_xquad_lm
+task:
+  - igb_xquad_lm_hi
+  - igb_xquad_lm_ml  
+  - igb_xquad_lm_en
+ 

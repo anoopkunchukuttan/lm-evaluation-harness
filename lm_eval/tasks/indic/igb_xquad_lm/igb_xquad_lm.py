@@ -19,16 +19,16 @@ class IGB_XQuad_LM(ConfigurableTask):
         "metric_list": [
             {
                 "metric": "word_perplexity",
-                "aggregation": "mean",
+                # "aggregation": "mean",
                 "higher_is_better": False,
             },                    {
                 "metric": "byte_perplexity",
-                "aggregation": "mean",
+                # "aggregation": "mean",
                 "higher_is_better": False,
             },
             {
                 "metric": "bits_per_byte",
-                "aggregation": "mean",
+                # "aggregation": "mean",
                 "higher_is_better": False,
             },                               
         ],
@@ -94,3 +94,40 @@ class Hi_IGB_XQuad_LM(IGB_XQuad_LM):
             num_proc=8,
             desc=f"Dropping {split} instances whose language is not {self.LANG}",
         )
+
+class En_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "en"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def create_docs(self, split):
+        return self.dataset[split].filter(
+            lambda example: example["lang"] == self.LANG,
+            num_proc=8,
+            desc=f"Dropping {split} instances whose language is not {self.LANG}",
+        )
+
+class Ml_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "ml"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def create_docs(self, split):
+        return self.dataset[split].filter(
+            lambda example: example["lang"] == self.LANG,
+            num_proc=8,
+            desc=f"Dropping {split} instances whose language is not {self.LANG}",
+        )
+
