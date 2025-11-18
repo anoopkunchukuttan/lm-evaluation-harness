@@ -2,5 +2,7 @@ group: in22_translation_gen
 task:
   - in22_translation_gen__eng_Latn-hin_Deva
   - in22_translation_gen__hin_Deva-eng_Latn
+  - in22_translation_gen__eng_Latn-mal_Mlym
+  - in22_translation_gen__mal_Mlym-eng_Latn
 metadata:
   version: 1.0
