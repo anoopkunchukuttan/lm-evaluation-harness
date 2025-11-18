@@ -12,7 +12,7 @@ class IGB_XQuad_LM(ConfigurableTask):
         "task": f"igb_xquad_lm",
         "tag": "igb_xquad_lm",
         "dataset_path": DATASET_PATH,
-        "dataset_kwargs": {"field": "examples", "trust_remote_code": True},
+        "dataset_kwargs": {"field": "examples"},
         "output_type": "loglikelihood_rolling",
         "doc_to_text": "{{"+ TEXT_FIELD + "}}",
         "doc_to_target": "{{"+ TEXT_FIELD + "}}",

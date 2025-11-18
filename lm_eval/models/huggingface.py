@@ -246,6 +246,18 @@ class HFLM(TemplateLM):
                 f"Model type is '{self.config.model_type}', part of the Gemma family--a BOS token will be used as Gemma underperforms without it."
             )
 
+        ## Setup model call custom model call arguments
+        self.model_call_kwargs = {}
+
+        # special handling for phi4mm models, where the modality has to be specified
+        if getattr(self.config, "model_type", "") == "phi4mm":
+            eval_logger.info(
+                f"Model type is '{self.config.model_type}', so input mode is set to 0 (text)"
+            )
+            self.model_call_kwargs["input_mode"] = 0
+            # call_kwargs["num_logits_to_keep"] = 1000
+
+
         self._max_length = max_length
         self.pretrained = pretrained
         self.delta = delta
@@ -927,14 +939,14 @@ class HFLM(TemplateLM):
                     assert attn_mask is not None and labels is not None
                     assert self.AUTO_MODEL_CLASS == transformers.AutoModelForSeq2SeqLM
                     return self.model(
-                        input_ids=inps, attention_mask=attn_mask, labels=labels
+                        input_ids=inps, attention_mask=attn_mask, labels=labels, **self.model_call_kwargs
                     ).logits
                 else:
                     assert self.AUTO_MODEL_CLASS in (
                         transformers.AutoModelForCausalLM,
                         transformers.AutoModelForVision2Seq,
                     )
-                    return self.model(inps).logits
+                    return self.model(inps,**self.model_call_kwargs).logits
 
     def _model_generate(self, context, max_length, stop, **generation_kwargs):
         # temperature = 0.0 if not set
@@ -1252,16 +1264,6 @@ class HFLM(TemplateLM):
                     "attn_mask": batched_encoder_mask,
                     "labels": batched_conts,
                 }
-
-            # # special handling for phi4mm models, where the modality has to be specified
-            # if getattr(self.config, "model_type", "") == "phi4mm":
-            #     eval_logger.info(
-            #         f"Model type is '{self.config.model_type}', so input mode is set to 0 (text)"
-            #     )
-
-            #     call_kwargs["input_mode"] = 0
-            #     call_kwargs["num_logits_to_use"] = 1000
-
 
             multi_logits = F.log_softmax(
                 self._model_call(batched_inps, **call_kwargs),
