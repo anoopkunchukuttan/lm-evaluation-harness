@@ -1253,6 +1253,16 @@ class HFLM(TemplateLM):
                     "labels": batched_conts,
                 }
 
+            # special handling for phi4mm models, where the modality has to be specified
+            if getattr(self.config, "model_type", "") == "phi4mm":
+                eval_logger.info(
+                    f"Model type is '{self.config.model_type}', so input mode is set to 0 (text)"
+                )
+
+                call_kwargs["input_mode"] = 0
+                call_kwargs["num_logits_to_use"] = 1000
+
+
             multi_logits = F.log_softmax(
                 self._model_call(batched_inps, **call_kwargs),
                 dim=-1,
