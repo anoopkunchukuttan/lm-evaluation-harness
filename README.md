@@ -1,5 +1,8 @@
 # Language Model Evaluation Harness
 
+
+This fork adds tasks for Indian langauges
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10256836.svg)](https://doi.org/10.5281/zenodo.10256836)
 
 ---
