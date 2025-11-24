@@ -4,19 +4,25 @@ import re
 
 from jinja2 import Environment
 from lm_eval.tasks.indic.igb_xquad_lm.chat_templates import CHAT_TEMPLATE_MAP
+import os
 
 def render_chat_template(example):
-    env = Environment()
-    template = env.from_string(CHAT_TEMPLATE_MAP["gemma3"])
-    rendered = template.render(
-        messages=[
-            {"role": "user", "content": example["context"]}
-        ],
-        bos_token="",
-        add_generation_prompt=False,
-    )
-
-    return {"context_final": rendered}
+    # Only apply chat template if environment variable is set to 1
+    if os.environ.get("IGB_RENDER_CHAT_TEMPLATE") == "1" and \
+       os.environ.get("IGB_RENDER_CHAT_TEMPLATE_NAME") in CHAT_TEMPLATE_MAP:
+        env = Environment()
+        template = env.from_string(CHAT_TEMPLATE_MAP[os.environ["IGB_RENDER_CHAT_TEMPLATE_NAME"]])
+        rendered = template.render(
+            messages=[
+                {"role": "user", "content": example["context"]}
+            ],
+            bos_token="",
+            add_generation_prompt=False,
+        )
+        return {"context_final": rendered}
+    else:
+        # Return the original context without applying chat template
+        return {"context_final": example["context"]}
 
 class IGB_XQuad_LM(ConfigurableTask):
     VERSION = 1
@@ -65,14 +71,21 @@ class IGB_XQuad_LM(ConfigurableTask):
     def has_test_docs(self):
         return True
 
+    def create_docs(self, split):
+        return self.dataset[split].filter(
+            lambda example: example["lang"] == self.task_lang(),
+            num_proc=8,
+            desc=f"Dropping {split} instances whose language is not {self.LANG}",
+        ).map(render_chat_template, num_proc=8)
+
     def training_docs(self):
-        return self.create_docs("train").map(render_chat_template, num_proc=8)
+        return self.create_docs("train")
 
     def validation_docs(self):
         return self.create_docs("validation")
 
     def test_docs(self):
-        return self.create_docs("test").map(render_chat_template, num_proc=8)
+        return self.create_docs("test")
 
     def should_decontaminate(self):
         return False
@@ -104,12 +117,15 @@ class Hi_IGB_XQuad_LM(IGB_XQuad_LM):
 
         super().__init__(config=lang_config)
 
-    def create_docs(self, split):
-        return self.dataset[split].filter(
-            lambda example: example["lang"] == self.LANG,
-            num_proc=8,
-            desc=f"Dropping {split} instances whose language is not {self.LANG}",
-        )
+    def task_lang(self):
+        return self.LANG
+
+    # def create_docs(self, split):
+    #     return self.dataset[split].filter(
+    #         lambda example: example["lang"] == self.LANG,
+    #         num_proc=8,
+    #         desc=f"Dropping {split} instances whose language is not {self.LANG}",
+    #     )
 
 class En_IGB_XQuad_LM(IGB_XQuad_LM):
 
@@ -122,12 +138,8 @@ class En_IGB_XQuad_LM(IGB_XQuad_LM):
 
         super().__init__(config=lang_config)
 
-    def create_docs(self, split):
-        return self.dataset[split].filter(
-            lambda example: example["lang"] == self.LANG,
-            num_proc=8,
-            desc=f"Dropping {split} instances whose language is not {self.LANG}",
-        )
+    def task_lang(self):
+        return self.LANG
 
 class Ml_IGB_XQuad_LM(IGB_XQuad_LM):
 
@@ -140,10 +152,6 @@ class Ml_IGB_XQuad_LM(IGB_XQuad_LM):
 
         super().__init__(config=lang_config)
 
-    def create_docs(self, split):
-        return self.dataset[split].filter(
-            lambda example: example["lang"] == self.LANG,
-            num_proc=8,
-            desc=f"Dropping {split} instances whose language is not {self.LANG}",
-        )
+    def task_lang(self):
+        return self.LANG
 
