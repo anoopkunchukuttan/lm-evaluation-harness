@@ -1826,13 +1826,13 @@ class PerplexityTask(Task):
             )
         return []
 
-    def fewshot_context(self, doc: dict, num_fewshot: int) -> Literal[""]:
-        if num_fewshot != 0:
-            raise ValueError(
-                "The number of fewshot examples must be 0 for perplexity tasks."
-            )
+    # def fewshot_context(self, doc: dict, num_fewshot: int) -> Literal[""]:
+    #     if num_fewshot != 0:
+    #         raise ValueError(
+    #             "The number of fewshot examples must be 0 for perplexity tasks."
+    #         )
 
-        return ""
+    #     return ""
 
     def higher_is_better(self) -> dict:
         return {
@@ -1850,17 +1850,59 @@ class PerplexityTask(Task):
     def doc_to_target(self, doc):
         return doc
 
-    def construct_requests(self, doc: dict, ctx: Optional[str], **kwargs):
-        if bool(ctx):
-            raise ValueError
+    # def construct_requests(self, doc: dict, ctx: Optional[str], **kwargs):
+    #     if bool(ctx):
+    #         raise ValueError
 
+    #     return Instance(
+    #         request_type=self.OUTPUT_TYPE,
+    #         doc=doc,
+    #         arguments=(self.doc_to_target(doc),),
+    #         idx=0,
+    #         **kwargs,
+    #     )
+
+    def fewshot_context(
+        self,
+        doc: dict,
+        num_fewshot: int,
+        system_instruction: Optional[str] = None,
+        apply_chat_template: bool = False,
+        fewshot_as_multiturn: bool = False,
+        chat_template: Optional[Callable] = None,
+        gen_prefix: Optional[str] = None,
+        thinking: Optional[bool] = False,
+    ) -> str:
+        if num_fewshot != 0:
+            raise ValueError(
+                "The number of fewshot examples must be 0 for perplexity tasks."
+            )
+        
+        # Apply chat template if requested
+        if apply_chat_template and chat_template:
+            # Wrap the target text in a user message
+            target_text = self.doc_to_target(doc)
+            chat_messages = [{"role": "user", "content": target_text}]
+            return chat_template(chat_messages, add_generation_prompt=False)
+        
+        return ""
+
+    def construct_requests(self, doc: dict, ctx: Optional[str], **kwargs):
+        apply_chat_template = kwargs.pop("apply_chat_template", False)
+        
+        # If chat template was applied, use ctx; otherwise use doc_to_target
+        if apply_chat_template and ctx:
+            arguments = (ctx,)
+        else:
+            arguments = (self.doc_to_target(doc),)
+        
         return Instance(
             request_type=self.OUTPUT_TYPE,
             doc=doc,
-            arguments=(self.doc_to_target(doc),),
+            arguments=arguments,
             idx=0,
             **kwargs,
-        )
+        )    
 
     def process_results(self, doc: dict, results: Tuple[float]) -> dict:
         (loglikelihood,) = results
