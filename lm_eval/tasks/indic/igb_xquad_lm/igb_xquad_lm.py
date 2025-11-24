@@ -2,10 +2,26 @@ from lm_eval.api.task import ConfigurableTask
 import copy
 import re
 
+from jinja2 import Environment
+from lm_eval.tasks.indic.igb_xquad_lm.chat_templates import CHAT_TEMPLATE_MAP
+
+def render_chat_template(example):
+    env = Environment()
+    template = env.from_string(CHAT_TEMPLATE_MAP["gemma3"])
+    rendered = template.render(
+        messages=[
+            {"role": "user", "content": example["context"]}
+        ],
+        bos_token="",
+        add_generation_prompt=False,
+    )
+
+    return {"context_final": rendered}
+
 class IGB_XQuad_LM(ConfigurableTask):
     VERSION = 1
     DATASET_PATH = "google/IndicGenBench_xquad_in"
-    TEXT_FIELD = "context"
+    TEXT_FIELD = "context_final"
 
     COMMON_CONFIG = {
         "metadata": {"version": VERSION},
@@ -50,13 +66,13 @@ class IGB_XQuad_LM(ConfigurableTask):
         return True
 
     def training_docs(self):
-        return self.create_docs("train")
+        return self.create_docs("train").map(render_chat_template, num_proc=8)
 
     def validation_docs(self):
         return self.create_docs("validation")
 
     def test_docs(self):
-        return self.create_docs("test")
+        return self.create_docs("test").map(render_chat_template, num_proc=8)
 
     def should_decontaminate(self):
         return False
