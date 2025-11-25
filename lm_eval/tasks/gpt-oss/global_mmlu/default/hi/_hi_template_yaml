@@ -26,12 +26,12 @@ filter_list:
   - function: remove_whitespace
   - function: regex
     group_select: -1
-    regex_pattern: The best answer is ([A-Z])
+    regex_pattern: ([A-Z])
   - function: take_first
   name: strict_match
 generation_kwargs:
   do_sample: false
-  max_gen_toks: 8192
+  max_new_tokens: 128
   until: []
 metadata:
   version: 0.0
