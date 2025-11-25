@@ -18,8 +18,9 @@ doc_to_text: 'Given the following question and four candidate answers (A, B, C a
 
   D. {{ option_d }}
 
-  Your response should end with "The best answer is [the_answer_letter]" where the
-  [the_answer_letter] is one of A, B, C or D.'
+  Your response should just be one character. It should be one of A, B, C, D
+  
+  Answer:'
 filter_list:
 - filter:
   - function: remove_whitespace
