@@ -1,0 +1,26 @@
+group: in22_translation_gen_xe
+task:
+  - in22_translation_gen__asm_Beng-eng_Latn
+  - in22_translation_gen__ben_Beng-eng_Latn
+  - in22_translation_gen__brx_Deva-eng_Latn
+  - in22_translation_gen__doi_Deva-eng_Latn
+  - in22_translation_gen__guj_Gujr-eng_Latn
+  - in22_translation_gen__hin_Deva-eng_Latn
+  - in22_translation_gen__kan_Knda-eng_Latn
+  - in22_translation_gen__kas_Arab-eng_Latn
+  - in22_translation_gen__kok_Deva-eng_Latn
+  - in22_translation_gen__mai_Deva-eng_Latn
+  - in22_translation_gen__mal_Mlym-eng_Latn
+  - in22_translation_gen__mni_Mtei-eng_Latn
+  - in22_translation_gen__mar_Deva-eng_Latn
+  - in22_translation_gen__npi_Deva-eng_Latn
+  - in22_translation_gen__ory_Orya-eng_Latn
+  - in22_translation_gen__pan_Guru-eng_Latn
+  - in22_translation_gen__san_Deva-eng_Latn
+  - in22_translation_gen__sat_Olck-eng_Latn
+  - in22_translation_gen__snd_Deva-eng_Latn
+  - in22_translation_gen__tam_Taml-eng_Latn
+  - in22_translation_gen__tel_Telu-eng_Latn
+  - in22_translation_gen__urd_Arab-eng_Latn
+metadata:
+  version: 1.0
