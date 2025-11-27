@@ -155,3 +155,129 @@ class Ml_IGB_XQuad_LM(IGB_XQuad_LM):
     def task_lang(self):
         return self.LANG
 
+class As_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "as"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+
+class Bn_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "bn"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+
+class Gu_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "gu"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+
+class Kn_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "kn"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+
+class Mr_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "mr"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+
+class Or_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "or"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+
+class Pa_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "pa"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+
+class Ta_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "ta"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+
+class Te_IGB_XQuad_LM(IGB_XQuad_LM):
+
+    LANG = "te"
+
+    def __init__(self, config=None):
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_{self.LANG}"
+
+        super().__init__(config=lang_config)
+
+    def task_lang(self):
+        return self.LANG
+

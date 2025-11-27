@@ -1,0 +1,2 @@
+task: igb_xquad_lm_gu
+class: !function igb_xquad_lm.Gu_IGB_XQuad_LM

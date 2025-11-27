@@ -1,0 +1,2 @@
+task: igb_xquad_lm_ta
+class: !function igb_xquad_lm.Ta_IGB_XQuad_LM

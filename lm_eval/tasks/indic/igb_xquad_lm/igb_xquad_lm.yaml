@@ -1,6 +1,15 @@
 group: igb_xquad_lm
 task:
-  - igb_xquad_lm_hi
-  - igb_xquad_lm_ml  
+  - igb_xquad_lm_as
+  - igb_xquad_lm_bn
   - igb_xquad_lm_en
+  - igb_xquad_lm_gu
+  - igb_xquad_lm_hi
+  - igb_xquad_lm_kn
+  - igb_xquad_lm_ml
+  - igb_xquad_lm_mr
+  - igb_xquad_lm_or
+  - igb_xquad_lm_pa
+  - igb_xquad_lm_ta
+  - igb_xquad_lm_te
  
