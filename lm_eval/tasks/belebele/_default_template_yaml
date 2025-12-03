@@ -1,18 +1,47 @@
 dataset_path: facebook/belebele
+test_split: default
+fewshot_split: default
 fewshot_config:
-  sampler: first_n
-output_type: multiple_choice
-should_decontaminate: true
-doc_to_decontamination_query: "{{question}}"
-doc_to_text: "P: {{flores_passage}}\nQ: {{question.strip()}}\nA: {{mc_answer1}}\nB: {{mc_answer2}}\nC: {{mc_answer3}}\nD: {{mc_answer4}}\nAnswer:"
-doc_to_choice: ["A", "B", "C", "D"]
-doc_to_target: "{{['1', '2', '3', '4'].index(correct_answer_num)}}"
-metric_list:
-  - metric: acc
-    aggregation: mean
-    higher_is_better: true
-  - metric: acc_norm
-    aggregation: mean
-    higher_is_better: true
+  sampler: default
+doc_to_target: '{{["A", "B", "C", "D"][["1", "2", "3", "4"].index(correct_answer_num)]}}'
+doc_to_text: 'Given the following question and four candidate answers (A, B, C and
+  D), choose the best answer.
+
+  Question: {{ question }}
+
+  A. {{ mc_answer1 }}
+
+  B. {{ mc_answer2 }}
+
+  C. {{ mc_answer3 }}
+
+  D. {{ mc_answer4 }}
+
+  Your response should just be one character. It should be one of A, B, C, D
+
+  Answer:'
+filter_list:
+- filter:
+  - function: remove_whitespace
+  - function: regex
+    group_select: -1
+    regex_pattern: ([A-Z])
+  - function: take_first
+  name: strict_match
+generation_kwargs:
+  do_sample: false
+  max_new_tokens: 128
+  until: []
 metadata:
   version: 0.0
+metric_list:
+- aggregation: mean
+  higher_is_better: true
+  ignore_case: true
+  ignore_punctuation: true
+  metric: exact_match
+  regexes_to_ignore:
+  - \$
+  - \.$
+output_type: generate_until
+should_decontaminate: true
