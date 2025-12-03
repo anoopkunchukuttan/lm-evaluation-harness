@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Use float32 dtype for V100 GPUs
 dtype="float32"
 
