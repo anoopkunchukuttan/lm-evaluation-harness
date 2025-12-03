@@ -45,8 +45,8 @@ do
 
 	model_str=$(echo "$model" | sed 's#/#__#g')
 
-	accelerate launch --multi_gpu -m lm_eval --model hf \
-		--model_args pretrained=$model,dtype="$dtype",trust_remote_code=True,device_map=balanced \
+	accelerate launch -m lm_eval --model hf \
+		--model_args pretrained=$model,dtype="$dtype",trust_remote_code=True \
 		--tasks $task_str	\
 		--batch_size 4 \
 		--output_path $RESDIR \
