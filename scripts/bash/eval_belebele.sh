@@ -6,11 +6,11 @@ dtype="float32"
 ## leval env
 MODELS=(
 	google/gemma-3-4b-it
-	sarvamai/sarvam-1
-	meta-llama/Llama-3.1-8B-Instruct
-	openai/gpt-oss-20b
-	google/gemma-3-12b-it
-	google/gemma-3-27b-it
+	# sarvamai/sarvam-1
+	# meta-llama/Llama-3.1-8B-Instruct
+	# openai/gpt-oss-20b
+	# google/gemma-3-12b-it
+	# google/gemma-3-27b-it
 )
 
 ## lmeval-phimm env
@@ -45,12 +45,13 @@ do
 
 	model_str=$(echo "$model" | sed 's#/#__#g')
 
-	accelerate launch -m lm_eval --model hf \
+	accelerate launch --multi_gpu -m lm_eval --model hf \
 		--model_args pretrained=$model,dtype="$dtype",trust_remote_code=True,device_map=auto \
 		--tasks $task_str	\
-		--batch_size 8 \
+		--batch_size auto \
 		--output_path $RESDIR \
 		--log_samples \
 		--write_out \
+		--limit 100 \
 		--seed 42 > $LOGDIR/${model_str}_belebele.log 2>&1 
 done
