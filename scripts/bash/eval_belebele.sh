@@ -52,5 +52,6 @@ do
 		--output_path $RESDIR \
 		--log_samples \
 		--write_out \
+		--limit 5 \
 		--seed 42 > $LOGDIR/${model_str}_belebele.log 2>&1 
 done
