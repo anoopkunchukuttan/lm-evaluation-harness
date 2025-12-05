@@ -25,7 +25,7 @@ export IGB_RENDER_CHAT_TEMPLATE_NAME="gemma3"
 
 # LANGS=(hi ml en)
 
-OUTDIR="output/llmspeech/indic_evals/belebele"
+OUTDIR="/output/llmspeech/indic_evals/belebele"
 RESDIR="$OUTDIR/results"
 LOGDIR="$OUTDIR/log"
 
