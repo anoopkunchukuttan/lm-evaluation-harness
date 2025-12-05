@@ -1,4 +1,4 @@
-group: belebele
+group: belebele_indic
 task:
   - belebele_asm_Beng
   - belebele_ben_Beng
@@ -19,10 +19,8 @@ task:
   - belebele_urd_Latn
 aggregate_metric_list:
   - aggregation: mean
-    metric: acc
+    metric: exact_match
     weight_by_size: true
-  - aggregation: mean
-    metric: acc_norm
-    weight_by_size: true
+    filter_list: strict_match
 metadata:
   version: 0.1

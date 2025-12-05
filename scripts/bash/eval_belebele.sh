@@ -39,7 +39,7 @@ do
 	# task_str="${task_str% }"   # remove trailing space
 	# echo "$task_str"
 
-	task_str=belebele
+	task_str=belebele_indic
 
 	echo "***** Running tasks: $task_str for model: $model"
 
@@ -52,5 +52,5 @@ do
 		--output_path $RESDIR \
 		--log_samples \
 		--write_out \
-		--seed 42 > $LOGDIR/${model_str}_belebele.log 2>&1 
+		--seed 42 > $LOGDIR/${model_str}_belebele_indic.log 2>&1
 done
