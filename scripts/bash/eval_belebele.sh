@@ -8,8 +8,8 @@ MODELS=(
 	# google/gemma-3-4b-it
 	# sarvamai/sarvam-1
 	# meta-llama/Llama-3.1-8B-Instruct
-	openai/gpt-oss-20b
-	# google/gemma-3-12b-it
+	# openai/gpt-oss-20b
+	google/gemma-3-12b-it
 	# google/gemma-3-27b-it
 )
 
