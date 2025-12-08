@@ -1,0 +1,49 @@
+dataset_path: facebook/belebele
+test_split: default
+fewshot_split: default
+fewshot_config:
+  sampler: default
+doc_to_target: '{{["A", "B", "C", "D"][["1", "2", "3", "4"].index(correct_answer_num)]}}'
+doc_to_text: 'You are given a passage and a related question with four candidate answers (A, B, C, D). Read the passage carefully, then select the single best answer to the question.
+
+  Passage: {{ flores_passage }}
+
+  Question: {{ question }}
+
+  A. {{ mc_answer1 }}
+
+  B. {{ mc_answer2 }}
+
+  C. {{ mc_answer3 }}
+
+  D. {{ mc_answer4 }}
+
+  Respond with exactly one character: A, B, C, or D.
+  Do not include any explanation or additional text.
+
+  Answer:'
+filter_list:
+- filter:
+  - function: remove_whitespace
+  - function: regex
+    group_select: -1
+    regex_pattern: ([A-Z])
+  - function: take_first
+  name: strict_match
+generation_kwargs:
+  do_sample: false
+  max_new_tokens: 128
+  until: []
+metadata:
+  version: 0.0
+metric_list:
+- aggregation: mean
+  higher_is_better: true
+  ignore_case: true
+  ignore_punctuation: true
+  metric: exact_match
+  regexes_to_ignore:
+  - \$
+  - \.$
+output_type: generate_until
+should_decontaminate: true
