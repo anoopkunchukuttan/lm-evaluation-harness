@@ -8,7 +8,7 @@ task:
   - in22_translation_gen__eng_Latn-hin_Deva
   - in22_translation_gen__eng_Latn-kan_Knda
   - in22_translation_gen__eng_Latn-kas_Arab
-  - in22_translation_gen__eng_Latn-kok_Deva
+  - in22_translation_gen__eng_Latn-gom_Deva
   - in22_translation_gen__eng_Latn-mai_Deva
   - in22_translation_gen__eng_Latn-mal_Mlym
   - in22_translation_gen__eng_Latn-mni_Mtei
@@ -17,7 +17,6 @@ task:
   - in22_translation_gen__eng_Latn-ory_Orya
   - in22_translation_gen__eng_Latn-pan_Guru
   - in22_translation_gen__eng_Latn-san_Deva
-  - in22_translation_gen__eng_Latn-sat_Olck
   - in22_translation_gen__eng_Latn-snd_Deva
   - in22_translation_gen__eng_Latn-tam_Taml
   - in22_translation_gen__eng_Latn-tel_Telu
