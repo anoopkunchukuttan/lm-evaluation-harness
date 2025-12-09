@@ -25,7 +25,7 @@ export IGB_RENDER_CHAT_TEMPLATE_NAME="gemma3"
 
 # LANGS=(hi ml en)
 
-OUTDIR="/output/llmspeech/squad_completion"
+OUTDIR="/output/llmspeech/igb_xquad_lm_gen"
 RESDIR="$OUTDIR/results"
 LOGDIR="$OUTDIR/log"
 
@@ -39,7 +39,7 @@ do
 	# task_str="${task_str% }"   # remove trailing space
 	# echo "$task_str"
 
-	task_str=squad_completion
+	task_str=igb_xquad_lm_gen
 
 	echo "***** Running tasks: $task_str for model: $model"
 
@@ -52,5 +52,5 @@ do
 		--output_path $RESDIR \
 		--log_samples \
 		--write_out \
-		--seed 42 > $LOGDIR/${model_str}_squad_completion.log 2>&1
+		--seed 42 > $LOGDIR/${model_str}_igb_xquad_lm_gen.log 2>&1
 done
