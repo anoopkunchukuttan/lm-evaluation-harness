@@ -17,8 +17,19 @@ class IGB_XQuad_LM_Gen(ConfigurableTask):
     DATASET_PATH = "google/IndicGenBench_xquad_in"
     DATASET_NAME = "default"
 
-    def __init__(self, **kwargs):
-        super().__init__(config={"metadata": {"version": self.VERSION}})
+    COMMON_CONFIG = {
+        "metadata": {"version": VERSION},
+        "task": "igb_xquad_lm_gen",
+        "tag": "igb_xquad_lm_gen",
+        "dataset_path": DATASET_PATH,
+        "dataset_kwargs": {"field": "examples"},
+        "output_type": "generate_until",
+    }
+
+    def __init__(self, config=None):
+        if config is None:
+            config = self.COMMON_CONFIG
+        super().__init__(config=config)
 
     def has_training_docs(self):
         return True
@@ -153,8 +164,15 @@ class IGB_XQuad_LM_Gen_Lang(IGB_XQuad_LM_Gen):
     
     LANG = None  # To be overridden by subclasses
     
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, config=None):
+        if config is None:
+            import copy
+            config = copy.deepcopy(self.COMMON_CONFIG)
+            config["task"] = f"igb_xquad_lm_gen_{self.LANG}"
+        super().__init__(config=config)
+
+    def task_lang(self):
+        return self.LANG
     
     def create_docs(self, split):
         """Filter documents by language"""
@@ -162,7 +180,7 @@ class IGB_XQuad_LM_Gen_Lang(IGB_XQuad_LM_Gen):
             return self.dataset[split]
         
         return self.dataset[split].filter(
-            lambda example: example["lang"] == self.LANG,
+            lambda example: example["lang"] == self.task_lang(),
             num_proc=8,
             desc=f"Dropping {split} instances whose language is not {self.LANG}",
         )
