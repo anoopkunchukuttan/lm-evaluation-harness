@@ -49,6 +49,7 @@ do
 		--model_args pretrained=$model,dtype="$dtype",trust_remote_code=True \
 		--tasks $task_str	\
 		--batch_size 4 \
+		--limit 100 \
 		--output_path $RESDIR \
 		--log_samples \
 		--write_out \

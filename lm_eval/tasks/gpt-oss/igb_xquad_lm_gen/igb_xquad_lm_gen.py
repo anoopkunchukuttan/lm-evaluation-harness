@@ -27,8 +27,6 @@ class IGB_XQuad_LM_Gen(ConfigurableTask):
     }
 
     def __init__(self, config=None):
-        if config is None:
-            config = self.COMMON_CONFIG
         super().__init__(config=config)
 
     def has_training_docs(self):
@@ -165,11 +163,12 @@ class IGB_XQuad_LM_Gen_Lang(IGB_XQuad_LM_Gen):
     LANG = None  # To be overridden by subclasses
     
     def __init__(self, config=None):
-        if config is None:
-            import copy
-            config = copy.deepcopy(self.COMMON_CONFIG)
-            config["task"] = f"igb_xquad_lm_gen_{self.LANG}"
-        super().__init__(config=config)
+        import copy
+
+        lang_config = copy.deepcopy(self.COMMON_CONFIG)
+        lang_config["task"] = f"igb_xquad_lm_gen_{self.LANG}"
+
+        super().__init__(config=lang_config)
 
     def task_lang(self):
         return self.LANG
