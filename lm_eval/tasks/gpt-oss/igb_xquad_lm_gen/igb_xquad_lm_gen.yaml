@@ -12,3 +12,7 @@ task:
   - igb_xquad_lm_gen_pa
   - igb_xquad_lm_gen_ta
   - igb_xquad_lm_gen_te
+aggregate_metric_list:
+  - aggregation: mean
+    metric: contains
+    weight_by_size: true
