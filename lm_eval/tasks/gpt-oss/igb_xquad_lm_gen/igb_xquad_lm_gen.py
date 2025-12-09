@@ -184,6 +184,15 @@ class IGB_XQuad_LM_Gen_Lang(IGB_XQuad_LM_Gen):
             desc=f"Dropping {split} instances whose language is not {self.LANG}",
         )
 
+    def training_docs(self):
+        return self.create_docs("train")
+
+    def validation_docs(self):
+        return self.create_docs("validation")
+
+    def test_docs(self):
+        return self.create_docs("test")
+
 
 # Language-specific classes
 class IGB_XQuad_LM_Gen_Hi(IGB_XQuad_LM_Gen_Lang):
