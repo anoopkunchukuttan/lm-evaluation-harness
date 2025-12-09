@@ -1,4 +1,4 @@
-group: belebele_gen_indic
+group: belebele_gen
 task:
   - belebele_gen_asm_Beng
   - belebele_gen_ben_Beng
