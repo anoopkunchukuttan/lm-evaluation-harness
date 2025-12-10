@@ -1,0 +1,2 @@
+task: igb_xquad_lm_gen_ml
+class: !function igb_xquad_lm_gen.IGB_XQuad_LM_Gen_Ml
